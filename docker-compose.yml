@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  wordpress:
+    image: wordpress:latest
+    container_name: wordpress
+    ports:
+      - "8050:80"
+    environment:
+      WORDPRESS_DB_HOST: mysql_wp:3306
+      WORDPRESS_DB_USER: Djony
+      WORDPRESS_DB_PASSWORD: Djony!!
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - wordpress_data:/var/www/html
+
+  mysql_wp:
+    image: mariadb:10.2
+    container_name: mysql_wp
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "32568:3306"
+    volumes:
+      - ./database/data:/var/lib/mysql
+      - ./conf.d:/etc/mysql/conf.d:ro
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: Djony
+      MYSQL_PASSWORD: Djony!!
+      MYSQL_ROOT_PASSWORD: Djony
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+
+volumes:
+  wordpress_data:
+  db_data:
