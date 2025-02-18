@@ -7,10 +7,10 @@ services:
     ports:
       - "8050:80"
     environment:
-      WORDPRESS_DB_HOST: mysql_wp:3306
-      WORDPRESS_DB_USER: Djony
-      WORDPRESS_DB_PASSWORD: Djony!!
-      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
+      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
     volumes:
       - wordpress_data:/var/www/html
 
@@ -25,10 +25,10 @@ services:
       - ./database/data:/var/lib/mysql
       - ./conf.d:/etc/mysql/conf.d:ro
     environment:
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: Djony
-      MYSQL_PASSWORD: Djony!!
-      MYSQL_ROOT_PASSWORD: Djony
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
 
